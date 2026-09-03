@@ -10,8 +10,6 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&amp;family=Syne:wght@600;700;800;900&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
-    <!-- Supabase Client -->
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
     <style>
         :root {
@@ -531,9 +529,7 @@
             transition: transform 0.25s ease;
         }
 
-        .btn-drive-big:hover {
-            transform: scale(1.04);
-        }
+        .btn-drive-big:hover { transform: scale(1.04); }
 
         /* ABOUT */
         .about-split {
@@ -610,9 +606,7 @@
             transition: transform 0.3s ease;
         }
 
-        .timeline-card:hover {
-            transform: translateX(6px);
-        }
+        .timeline-card:hover { transform: translateX(6px); }
 
         /* MARQUEE */
         .marquee-track-container {
@@ -951,7 +945,55 @@
             cursor: pointer;
         }
 
-        /* ADAPTIVE BREAKPOINTS (Laptop vs Mobile) */
+        /* PRINT RESUME STYLES */
+        #print-resume-wrapper { display: none; }
+
+        @media print {
+            @page { size: A4; margin: 15mm; }
+            body * { visibility: hidden !important; }
+            #bg-canvas, .color-glow-1, .color-glow-2, nav, footer, .admin-toggle-btn, .admin-panel,
+            #hero, #workspace, #skills, #work, #contact {
+                display: none !important;
+            }
+            #print-resume-wrapper, #print-resume-wrapper * {
+                visibility: visible !important;
+            }
+            #print-resume-wrapper {
+                display: block !important;
+                position: absolute;
+                left: 0; top: 0;
+                width: 100%;
+                background: #ffffff !important;
+                color: #0f172a !important;
+                font-family: 'Plus Jakarta Sans', Arial, sans-serif !important;
+                padding: 10px;
+            }
+            .resume-pdf-header {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                border-bottom: 2px solid #0284c7;
+                padding-bottom: 20px;
+                margin-bottom: 25px;
+            }
+            .resume-pdf-header h1 { font-size: 26pt; color: #0f172a; font-weight: 800; margin-bottom: 4px; }
+            .resume-pdf-header h3 { font-size: 13pt; color: #0284c7; font-weight: 700; text-transform: uppercase; }
+            .resume-section-title {
+                font-size: 12pt; font-weight: 800; color: #0284c7; text-transform: uppercase;
+                border-bottom: 1px solid #cbd5e1; padding-bottom: 5px; margin-top: 20px; margin-bottom: 12px;
+            }
+            .resume-text { font-size: 10.5pt; color: #334155; line-height: 1.6; }
+            .resume-info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 15px; }
+            .resume-info-item { font-size: 10pt; color: #1e293b; }
+            .resume-info-item span { color: #64748b; font-weight: 600; }
+            .resume-edu-year { font-size: 9.5pt; font-weight: 700; color: #0284c7; }
+            .resume-edu-degree { font-size: 11pt; font-weight: 800; color: #0f172a; }
+            .resume-edu-inst { font-size: 10pt; color: #475569; }
+            .resume-skills-list { display: flex; flex-wrap: wrap; gap: 8px; }
+            .resume-skill-pill { background: #f1f5f9 !important; border: 1px solid #cbd5e1 !important; padding: 4px 12px; border-radius: 4px; font-size: 9.5pt; font-weight: 600; color: #0f172a; }
+        }
+
+        /* RESPONSIVE MEDIA QUERIES */
         @media (max-width: 992px) {
             .hero-grid {
                 grid-template-columns: 1fr;
@@ -1008,6 +1050,47 @@
             <a href="#contact" class="nav-hire-btn">Say Hi</a>
         </div>
     </nav>
+
+    <!-- PDF ONLY RESUME RENDER VIEW -->
+    <div id="print-resume-wrapper">
+        <div class="resume-pdf-header">
+            <div>
+                <h1 id="pdf-resume-name">Aman Deswal</h1>
+                <h3>Creative Video Editor &amp; Motion Designer</h3>
+            </div>
+        </div>
+
+        <div class="resume-section-title">Personal Information &amp; Contact</div>
+        <div class="resume-info-grid">
+            <div class="resume-info-item"><span>Phone:</span> <strong id="pdf-info-phone">+91 7056574291</strong></div>
+            <div class="resume-info-item"><span>Email:</span> <strong id="pdf-info-email">amandeswal171@gmail.com</strong></div>
+            <div class="resume-info-item"><span>YouTube:</span> <strong>@AmanDeswal-h5m</strong></div>
+            <div class="resume-info-item"><span>Location:</span> <strong>Haryana, India</strong></div>
+        </div>
+
+        <div class="resume-section-title">Professional Summary</div>
+        <p class="resume-text" id="pdf-resume-summary">
+            Enthusiastic and creative Video Editor passionate about visual storytelling. Skilled in Premiere Pro, Filmora, CapCut, and Canva along with modern AI tools.
+        </p>
+
+        <div class="resume-section-title">Education &amp; Qualifications</div>
+        <div id="pdf-resume-education">
+            <div class="resume-edu-card">
+                <div class="resume-edu-year">2023 - Present</div>
+                <div class="resume-edu-degree">Bachelor's Degree</div>
+                <div class="resume-edu-inst">Kurukshetra University</div>
+            </div>
+        </div>
+
+        <div class="resume-section-title">Software &amp; Technical Expertise</div>
+        <div class="resume-skills-list" id="pdf-resume-skills">
+            <span class="resume-skill-pill">Adobe Premiere Pro (4/5)</span>
+            <span class="resume-skill-pill">CapCut Pro (5/5)</span>
+            <span class="resume-skill-pill">Wondershare Filmora (4/5)</span>
+            <span class="resume-skill-pill">Canva Pro (5/5)</span>
+            <span class="resume-skill-pill">Generative AI Video Production</span>
+        </div>
+    </div>
 
     <!-- 1. HERO SECTION -->
     <section class="hero-section reveal-on-scroll reveal-active" id="hero">
@@ -1394,7 +1477,8 @@
                     </div>
 
                     <div>
-                        <form id="portfolio-contact-form" onsubmit="submitSupabaseForm(event)">
+                        <!-- DIRECT WORKING FORM (WhatsApp + Email Fallback) -->
+                        <form id="portfolio-contact-form" onsubmit="handleDirectMessage(event)">
                             <input type="text" id="form-name" class="input-dark" placeholder="Your Name" required="">
                             <input type="email" id="form-email" class="input-dark" placeholder="Your Email Address" required="">
                             <textarea id="form-message" class="input-dark" rows="4" placeholder="Write about your project, timeline, budget or requirements..." required=""></textarea>
@@ -1402,7 +1486,7 @@
                                 <i class="fa-solid fa-paper-plane"></i> Send Direct Message
                             </button>
                         </form>
-                        <p id="form-status-msg" style="margin-top:10px; font-family:var(--font-mono); font-size:0.78rem; text-align:center;"></p>
+                        <p id="form-status-msg" style="margin-top:12px; font-family:var(--font-mono); font-size:0.82rem; text-align:center;"></p>
                     </div>
 
                 </div>
@@ -1452,56 +1536,24 @@
             window.print();
         }
 
-        const SUPABASE_URL = "YOUR_SUPABASE_PROJECT_URL";
-        const SUPABASE_ANON_KEY = "YOUR_SUPABASE_ANON_KEY";
-        let supabaseClient = null;
-
-        function initSupabase() {
-            if (window.supabase && SUPABASE_URL !== "YOUR_SUPABASE_PROJECT_URL") {
-                supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
-            }
-        }
-
-        async function submitSupabaseForm(event) {
+        // DIRECT CONTACT HANDLER (Directly routes client to WhatsApp & Email)
+        function handleDirectMessage(event) {
             event.preventDefault();
-            const btn = document.getElementById('form-submit-btn');
+            const name = document.getElementById('form-name').value.trim();
+            const email = document.getElementById('form-email').value.trim();
+            const message = document.getElementById('form-message').value.trim();
             const statusMsg = document.getElementById('form-status-msg');
-            const name = document.getElementById('form-name').value;
-            const email = document.getElementById('form-email').value;
-            const message = document.getElementById('form-message').value;
 
-            if (SUPABASE_URL === "YOUR_SUPABASE_PROJECT_URL") {
-                statusMsg.style.color = "#ef4444";
-                statusMsg.innerText = "Please paste Supabase credentials in script!";
-                return;
-            }
+            const waText = encodeURIComponent(`Hi Aman! My name is ${name} (${email}).\n\nProject Requirement:\n${message}`);
+            const waUrl = `https://wa.me/917056574291?text=${waText}`;
 
-            if (!supabaseClient) initSupabase();
+            statusMsg.style.color = "#10b981";
+            statusMsg.innerHTML = `✅ Opening WhatsApp to send your transmission...`;
 
-            btn.disabled = true;
-            btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Sending...';
-            statusMsg.innerText = '';
-
-            try {
-                const { error } = await supabaseClient
-                    .from('portfolio_messages')
-                    .insert([{ name, email, message }]);
-
-                if (error) {
-                    statusMsg.style.color = "#ef4444";
-                    statusMsg.innerText = "❌ Error: " + error.message;
-                } else {
-                    statusMsg.style.color = "#10b981";
-                    statusMsg.innerText = "✅ Message sent successfully!";
-                    document.getElementById('portfolio-contact-form').reset();
-                }
-            } catch (err) {
-                statusMsg.style.color = "#ef4444";
-                statusMsg.innerText = "❌ Connection error.";
-            }
-
-            btn.disabled = false;
-            btn.innerHTML = '<i class="fa-solid fa-paper-plane"></i> Send Direct Message';
+            setTimeout(() => {
+                window.open(waUrl, '_blank');
+                document.getElementById('portfolio-contact-form').reset();
+            }, 600);
         }
 
         let isEditMode = false;
@@ -1761,7 +1813,6 @@
         animateCanvas();
 
         window.onload = function() {
-            initSupabase();
             loadSavedImages();
         };
     </script>
