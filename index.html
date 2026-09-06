@@ -607,7 +607,7 @@
 
         .timeline-card:hover { transform: translateX(6px); }
 
-        /* EXTRA CUSTOM SECTION - FIXED TO ALWAYS BE VISIBLE */
+        /* EXTRA CUSTOM SECTION */
         #custom-section { 
             display: block; 
         }
@@ -961,7 +961,7 @@
 
         .admin-toggle-btn:hover { transform: scale(1.08) rotate(45deg); }
 
-        /* ADMIN PANEL - DEFAULT COMPLETELY HIDDEN */
+        /* ADMIN PANEL - DEFAULT COMPLETELY HIDDEN VIA DISPLAY: NONE */
         .admin-panel {
             position: fixed;
             bottom: 80px;
@@ -1337,10 +1337,10 @@
                         <div class="star-rating" contenteditable="false">⭐⭐⭐⭐⭐ (5/5)</div>
                         <button class="btn-delete-item" onclick="deleteElement('rank-4')"><i class="fa-solid fa-trash"></i></button>
                     </div>
-                <div class="ranking-item" id="rank-1788688512569">
+                <div class="ranking-item" id="rank-1788689380589">
                 <span><strong contenteditable="false"><i class="fa-solid fa-circle-check" style="color:var(--accent-cyan); margin-right:8px;"></i>Ai video</strong></span>
                 <div class="star-rating" contenteditable="false">⭐⭐⭐⭐⭐ (5/5)</div>
-                <button class="btn-delete-item" onclick="deleteElement('rank-1788688512569')"><i class="fa-solid fa-trash"></i></button>
+                <button class="btn-delete-item" onclick="deleteElement('rank-1788689380589')"><i class="fa-solid fa-trash"></i></button>
             </div></div>
 
                 <button class="btn-add-item" onclick="addNewSkill()"><i class="fa-solid fa-plus"></i> Add Software / Skill</button>
@@ -1674,8 +1674,8 @@
     <!-- ADMIN FLOATING GEAR -->
     <button class="admin-toggle-btn" onclick="handleAdminGearClick()" title="Admin Controls"><i class="fa-solid fa-gear"></i></button>
 
-    <!-- ADMIN CONTROLS PANEL (DEFAULT HIDDEN) -->
-    <div class="admin-panel" id="adminPanel" style="display: block;">
+    <!-- ADMIN CONTROLS PANEL (STRICTLY HIDDEN BY DEFAULT) -->
+    <div class="admin-panel" id="adminPanel" style="display: none;">
         <div style="font-family:var(--font-mono); font-size:0.75rem; color:var(--accent-cyan); margin-bottom:10px;">// EDIT CONTROLS</div>
         <button style="background:#a855f7; color:#fff;" onclick="addNewCustomCard()"><i class="fa-solid fa-plus-circle"></i> Add Custom Card</button>
         <button style="background:#ef4444; color:#fff;" onclick="lockEditMode()"><i class="fa-solid fa-lock"></i> Lock &amp; Close</button>
@@ -1753,6 +1753,9 @@
             if (!isEditMode) return alert("🔒 Unlock Edit Mode first!");
             document.body.classList.remove('edit-active');
             document.querySelectorAll('[contenteditable]').forEach(el => el.contentEditable = false);
+
+            const panel = document.getElementById('adminPanel');
+            if (panel) panel.style.display = 'none';
 
             const fullHTML = "<!DOCTYPE html>\n" + document.documentElement.outerHTML;
             const blob = new Blob([fullHTML], { type: "text/html" });
