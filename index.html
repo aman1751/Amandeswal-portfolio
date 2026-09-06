@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" crxlauncher-bridged="" crxlauncher=""><head>
+<html lang="en"><head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Aman Deswal — Creative Video Editor &amp; Motion Designer</title>
@@ -318,7 +318,7 @@
         }
 
         .photo-action-panel {
-            display: none;
+            display: none !important;
             flex-direction: column;
             gap: 6px;
             margin-top: 14px;
@@ -606,6 +606,41 @@
         }
 
         .timeline-card:hover { transform: translateX(6px); }
+
+        /* EXTRA CUSTOM SECTION - FIXED TO ALWAYS BE VISIBLE */
+        #custom-section { 
+            display: block; 
+        }
+
+        .extra-cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 16px;
+            margin-top: 15px;
+        }
+
+        .extra-custom-card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid var(--surface-border);
+            border-radius: 14px;
+            padding: 18px;
+            position: relative;
+            transition: transform 0.3s ease, border-color 0.3s ease;
+        }
+
+        .extra-custom-card:hover {
+            transform: translateY(-3px);
+            border-color: var(--accent-cyan);
+        }
+
+        .extra-card-badge {
+            font-family: var(--font-mono);
+            font-size: 0.68rem;
+            color: var(--accent-pink);
+            display: inline-block;
+            margin-bottom: 6px;
+            font-weight: bold;
+        }
 
         /* MARQUEE */
         .marquee-track-container {
@@ -986,10 +1021,10 @@
             .admin-panel { right: 12px; left: 12px; width: auto; bottom: 80px; }
         }
     </style>
-<style></style></head>
+</head>
 <body class="">
 
-    <canvas id="bg-canvas" width="1536" height="730"></canvas>
+    <canvas id="bg-canvas" width="1526" height="730"></canvas>
     <div class="color-glow-1"></div>
     <div class="color-glow-2"></div>
 
@@ -1008,7 +1043,7 @@
         </div>
 
         <div class="nav-right-actions">
-            <button class="theme-btn" onclick="toggleTheme()" id="themeBtn" title="Toggle Theme" fdprocessedid="a3nwwo"><i class="fa-solid fa-moon"></i></button>
+            <button class="theme-btn" onclick="toggleTheme()" id="themeBtn" title="Toggle Theme"><i class="fa-solid fa-moon"></i></button>
             <a href="https://www.youtube.com/@AmanDeswal-h5m" target="_blank" class="nav-yt-btn"><i class="fa-brands fa-youtube"></i> YouTube</a>
             <a href="#contact" class="nav-hire-btn">Say Hi</a>
         </div>
@@ -1064,7 +1099,7 @@
                             <i class="fa-brands fa-google-drive"></i> Video Drive Vault
                         </a>
                         <a href="#work" class="btn-white"><i class="fa-solid fa-play"></i> Watch Work</a>
-                        <button onclick="downloadResume()" class="btn-glass" fdprocessedid="rh20kr"><i class="fa-solid fa-file-pdf"></i> Resume (PDF)</button>
+                        <button onclick="downloadResume()" class="btn-glass"><i class="fa-solid fa-file-pdf"></i> Resume (PDF)</button>
                     </div>
 
                     <div class="social-mini-bar" id="hero-social-bar">
@@ -1232,11 +1267,38 @@
         </div>
     </section>
 
-    <!-- 5. SOFTWARE SUITE & PROFICIENCY -->
+    <!-- 5. ADDITIONAL INFORMATION & CUSTOM HIGHLIGHTS (ALWAYS VISIBLE SECTION) -->
+    <section class="section-block reveal-on-scroll reveal-active" id="custom-section">
+        <div class="container">
+            <div class="terminal-header-title">
+                <span class="terminal-tag">// 04 CUSTOM DATA MODULE</span>
+                <h2 class="section-heading">Additional Information &amp; Custom Highlights</h2>
+            </div>
+
+            <div class="card-cyber">
+                <p style="color:var(--text-secondary); margin-bottom:15px; font-size:0.92rem;">
+                    Ye section aapki extra credentials, experience, aur workstation details ke liye hai:
+                </p>
+
+                <div class="extra-cards-grid" id="extra-custom-container">
+                    <div class="extra-custom-card" id="extra-card-1788687600709">
+                        <span class="extra-card-badge" contenteditable="false"><i class="fa-solid fa-award"></i> Experience</span>
+                        <h4 contenteditable="false" style="color:var(--accent-cyan); margin-bottom:6px; font-size: 1.05rem;">Video Editor — The News 15 (2 months)</h4>
+                        <p contenteditable="false" style="font-size:0.85rem; color:var(--text-secondary);">Produced daily news edits, social media shorts, and broadcast graphics while meeting rapid-turnaround newsroom deadlines. Tools used: Premiere Pro.</p>
+                        <button class="btn-delete-item" onclick="deleteElement('extra-card-1788687600709')"><i class="fa-solid fa-trash"></i> Delete Card</button>
+                    </div>
+                </div>
+
+                <button class="btn-add-item" onclick="addNewCustomCard()"><i class="fa-solid fa-plus"></i> Add New Custom Card</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- 6. SOFTWARE SUITE & PROFICIENCY -->
     <section class="section-block reveal-on-scroll reveal-active" id="skills">
         <div class="container">
             <div class="terminal-header-title">
-                <span class="terminal-tag">// 04 PRODUCTION SOFTWARE</span>
+                <span class="terminal-tag">// 05 PRODUCTION SOFTWARE</span>
                 <h2 class="section-heading">Software Proficiency</h2>
             </div>
 
@@ -1275,18 +1337,22 @@
                         <div class="star-rating" contenteditable="false">⭐⭐⭐⭐⭐ (5/5)</div>
                         <button class="btn-delete-item" onclick="deleteElement('rank-4')"><i class="fa-solid fa-trash"></i></button>
                     </div>
-                </div>
+                <div class="ranking-item" id="rank-1788688512569">
+                <span><strong contenteditable="false"><i class="fa-solid fa-circle-check" style="color:var(--accent-cyan); margin-right:8px;"></i>Ai video</strong></span>
+                <div class="star-rating" contenteditable="false">⭐⭐⭐⭐⭐ (5/5)</div>
+                <button class="btn-delete-item" onclick="deleteElement('rank-1788688512569')"><i class="fa-solid fa-trash"></i></button>
+            </div></div>
 
                 <button class="btn-add-item" onclick="addNewSkill()"><i class="fa-solid fa-plus"></i> Add Software / Skill</button>
             </div>
         </div>
     </section>
 
-    <!-- 6. PORTFOLIO VIDEOS -->
+    <!-- 7. PORTFOLIO VIDEOS (ALL SAVED SHORT & LONG FORM VIDEOS INCLUDED) -->
     <section class="section-block reveal-on-scroll reveal-active" id="work">
         <div class="container">
             <div class="terminal-header-title" style="text-align: center;">
-                <span class="terminal-tag">// 05 SELECTED VIDEO RELEASES</span>
+                <span class="terminal-tag">// 06 SELECTED VIDEO RELEASES</span>
                 <h2 class="section-heading">Featured Portfolio Works</h2>
             </div>
 
@@ -1305,12 +1371,12 @@
             </div>
 
             <div class="mode-switch-wrapper">
-                <button class="pill-switch" id="btn-mode-shorts" onclick="switchWorkMode('shorts')" fdprocessedid="s07lue"><i class="fa-solid fa-mobile-screen"></i> Vertical (Shorts)</button>
-                <button class="pill-switch active" id="btn-mode-long" onclick="switchWorkMode('long')" fdprocessedid="zc0ui8"><i class="fa-solid fa-display"></i> Horizontal (16:9)</button>
+                <button class="pill-switch active" id="btn-mode-shorts" onclick="switchWorkMode('shorts')"><i class="fa-solid fa-mobile-screen"></i> Vertical (Shorts)</button>
+                <button class="pill-switch" id="btn-mode-long" onclick="switchWorkMode('long')"><i class="fa-solid fa-display"></i> Horizontal (16:9)</button>
             </div>
 
-            <!-- Shorts Grid -->
-            <div class="projects-grid" id="shorts-works-grid" style="display: none;">
+            <!-- Shorts Grid (All 7 Saved Shorts) -->
+            <div class="projects-grid" id="shorts-works-grid" style="display: grid;">
                 <div class="project-card" id="short-card-1">
                     <div style="display:flex; justify-content:space-between; font-family:var(--font-mono); font-size:0.72rem; color:var(--text-muted); margin-bottom:8px;">
                         <span>// PROJECT 01</span>
@@ -1326,159 +1392,204 @@
                     </div>
                 </div>
 
-                
-            <div class="project-card" id="card-1788529983298">
-                <div style="display:flex; justify-content:space-between; font-family:var(--font-mono); font-size:0.72rem; color:var(--text-muted); margin-bottom:8px;">
-                    <span>// RECENT WORK</span>
-                    <span style="color:var(--accent-cyan);">CAPCUT PRO</span>
+                <div class="project-card" id="card-1788529983298">
+                    <div style="display:flex; justify-content:space-between; font-family:var(--font-mono); font-size:0.72rem; color:var(--text-muted); margin-bottom:8px;">
+                        <span>// RECENT WORK</span>
+                        <span style="color:var(--accent-cyan);">CAPCUT PRO</span>
+                    </div>
+                    <div class="video-box-player vertical">
+                        <iframe src="https://www.youtube.com/embed/yZkM3FUMWBo" allowfullscreen=""></iframe>
+                    </div>
+                    <h3 style="font-family:var(--font-display); font-size:1rem;" contenteditable="false">capcut ads</h3>
+                    <span class="badge-pill">CAPCUT PRO</span>
+                    <div>
+                        <button class="btn-delete-item" onclick="deleteElement('card-1788529983298')"><i class="fa-solid fa-trash"></i> Delete</button>
+                    </div>
                 </div>
-                <div class="video-box-player vertical">
-                    <iframe src="https://www.youtube.com/embed/yZkM3FUMWBo" allowfullscreen=""></iframe>
-                </div>
-                <h3 style="font-family:var(--font-display); font-size:1rem;" contenteditable="false">capcut ads</h3>
-                <span class="badge-pill">CAPCUT PRO</span>
-                <div>
-                    <button class="btn-delete-item" onclick="deleteElement('card-1788529983298')"><i class="fa-solid fa-trash"></i> Delete</button>
-                </div>
-            </div><div class="project-card" id="card-1788530089590">
-                <div style="display:flex; justify-content:space-between; font-family:var(--font-mono); font-size:0.72rem; color:var(--text-muted); margin-bottom:8px;">
-                    <span>// RECENT WORK</span>
-                    <span style="color:var(--accent-cyan);">CAPCUT PRO</span>
-                </div>
-                <div class="video-box-player vertical">
-                    <iframe src="https://www.youtube.com/embed/R4oMWZvorxw" allowfullscreen=""></iframe>
-                </div>
-                <h3 style="font-family:var(--font-display); font-size:1rem;" contenteditable="false">capcut edit </h3>
-                <span class="badge-pill">CAPCUT PRO</span>
-                <div>
-                    <button class="btn-delete-item" onclick="deleteElement('card-1788530089590')"><i class="fa-solid fa-trash"></i> Delete</button>
-                </div>
-            </div><div class="project-card" id="card-1788530592843">
-                <div style="display:flex; justify-content:space-between; font-family:var(--font-mono); font-size:0.72rem; color:var(--text-muted); margin-bottom:8px;">
-                    <span>// RECENT WORK</span>
-                    <span style="color:var(--accent-cyan);">CAPCUT PRO</span>
-                </div>
-                <div class="video-box-player vertical">
-                    <iframe src="https://youtube.com/embed/HLyDi-Ix7OA" allowfullscreen=""></iframe>
-                </div>
-                <h3 style="font-family:var(--font-display); font-size:1rem;" contenteditable="false">capcut edit</h3>
-                <span class="badge-pill">CAPCUT PRO</span>
-                <div>
-                    <button class="btn-delete-item" onclick="deleteElement('card-1788530592843')"><i class="fa-solid fa-trash"></i> Delete</button>
-                </div>
-            </div><div class="project-card" id="card-1788530676588">
-                <div style="display:flex; justify-content:space-between; font-family:var(--font-mono); font-size:0.72rem; color:var(--text-muted); margin-bottom:8px;">
-                    <span>// RECENT WORK</span>
-                    <span style="color:var(--accent-cyan);">CAPCUT PRO</span>
-                </div>
-                <div class="video-box-player vertical">
-                    <iframe src="https://youtube.com/embed/7YzF8oUf2FU" allowfullscreen=""></iframe>
-                </div>
-                <h3 style="font-family:var(--font-display); font-size:1rem;" contenteditable="false">capcut edit</h3>
-                <span class="badge-pill">CAPCUT PRO</span>
-                <div>
-                    <button class="btn-delete-item" onclick="deleteElement('card-1788530676588')"><i class="fa-solid fa-trash"></i> Delete</button>
-                </div>
-            </div><div class="project-card" id="card-1788530758456">
-                <div style="display:flex; justify-content:space-between; font-family:var(--font-mono); font-size:0.72rem; color:var(--text-muted); margin-bottom:8px;">
-                    <span>// RECENT WORK</span>
-                    <span style="color:var(--accent-cyan);">FILMORA</span>
-                </div>
-                <div class="video-box-player vertical">
-                    <iframe src="https://youtube.com/embed/Dzajd0jlLxY" allowfullscreen=""></iframe>
-                </div>
-                <h3 style="font-family:var(--font-display); font-size:1rem;" contenteditable="false">filmora edit</h3>
-                <span class="badge-pill">FILMORA</span>
-                <div>
-                    <button class="btn-delete-item" onclick="deleteElement('card-1788530758456')"><i class="fa-solid fa-trash"></i> Delete</button>
-                </div>
-            </div><div class="project-card" id="card-1788530842453">
-                <div style="display:flex; justify-content:space-between; font-family:var(--font-mono); font-size:0.72rem; color:var(--text-muted); margin-bottom:8px;">
-                    <span>// RECENT WORK</span>
-                    <span style="color:var(--accent-cyan);">FILMORA</span>
-                </div>
-                <div class="video-box-player vertical">
-                    <iframe src="https://youtube.com/embed/jBY_OzEAvLE" allowfullscreen=""></iframe>
-                </div>
-                <h3 style="font-family:var(--font-display); font-size:1rem;" contenteditable="false">filmora ads</h3>
-                <span class="badge-pill">FILMORA</span>
-                <div>
-                    <button class="btn-delete-item" onclick="deleteElement('card-1788530842453')"><i class="fa-solid fa-trash"></i> Delete</button>
-                </div>
-            </div></div>
 
-            <!-- Long Grid -->
-            <div class="projects-grid" id="long-works-grid" style="display: grid;">
-                <div class="empty-video-placeholder" id="long-empty-msg" style="grid-column: 1/-1; text-align: center; padding: 40px 20px; border: 1px dashed var(--surface-border); border-radius: 14px; color: var(--text-secondary);">
-                    <i class="fa-solid fa-video" style="font-size: 2rem; color: var(--accent-purple); margin-bottom: 10px;"></i>
-                    <p>No horizontal long-form videos added yet. Use edit mode to embed 16:9 YouTube videos.</p>
+                <div class="project-card" id="card-1788530089590">
+                    <div style="display:flex; justify-content:space-between; font-family:var(--font-mono); font-size:0.72rem; color:var(--text-muted); margin-bottom:8px;">
+                        <span>// RECENT WORK</span>
+                        <span style="color:var(--accent-cyan);">CAPCUT PRO</span>
+                    </div>
+                    <div class="video-box-player vertical">
+                        <iframe src="https://www.youtube.com/embed/R4oMWZvorxw" allowfullscreen=""></iframe>
+                    </div>
+                    <h3 style="font-family:var(--font-display); font-size:1rem;" contenteditable="false">capcut edit</h3>
+                    <span class="badge-pill">CAPCUT PRO</span>
+                    <div>
+                        <button class="btn-delete-item" onclick="deleteElement('card-1788530089590')"><i class="fa-solid fa-trash"></i> Delete</button>
+                    </div>
                 </div>
-            <div class="project-card" id="card-1788531148344">
-                <div style="display:flex; justify-content:space-between; font-family:var(--font-mono); font-size:0.72rem; color:var(--text-muted); margin-bottom:8px;">
-                    <span>// RECENT WORK</span>
-                    <span style="color:var(--accent-cyan);">PREMIERE PRO</span>
+
+                <div class="project-card" id="card-1788530758456">
+                    <div style="display:flex; justify-content:space-between; font-family:var(--font-mono); font-size:0.72rem; color:var(--text-muted); margin-bottom:8px;">
+                        <span>// RECENT WORK</span>
+                        <span style="color:var(--accent-cyan);">FILMORA</span>
+                    </div>
+                    <div class="video-box-player vertical">
+                        <iframe src="https://youtube.com/embed/Dzajd0jlLxY" allowfullscreen=""></iframe>
+                    </div>
+                    <h3 style="font-family:var(--font-display); font-size:1rem;" contenteditable="false">filmora edit</h3>
+                    <span class="badge-pill">FILMORA</span>
+                    <div>
+                        <button class="btn-delete-item" onclick="deleteElement('card-1788530758456')"><i class="fa-solid fa-trash"></i> Delete</button>
+                    </div>
                 </div>
-                <div class="video-box-player horizontal">
-                    <iframe src="https://youtube.com/embed/u2_tpROhLSs" allowfullscreen=""></iframe>
+
+                <div class="project-card" id="card-1788530842453">
+                    <div style="display:flex; justify-content:space-between; font-family:var(--font-mono); font-size:0.72rem; color:var(--text-muted); margin-bottom:8px;">
+                        <span>// RECENT WORK</span>
+                        <span style="color:var(--accent-cyan);">FILMORA</span>
+                    </div>
+                    <div class="video-box-player vertical">
+                        <iframe src="https://youtube.com/embed/jBY_OzEAvLE" allowfullscreen=""></iframe>
+                    </div>
+                    <h3 style="font-family:var(--font-display); font-size:1rem;" contenteditable="false">filmora ads</h3>
+                    <span class="badge-pill">FILMORA</span>
+                    <div>
+                        <button class="btn-delete-item" onclick="deleteElement('card-1788530842453')"><i class="fa-solid fa-trash"></i> Delete</button>
+                    </div>
                 </div>
-                <h3 style="font-family:var(--font-display); font-size:1rem;" contenteditable="false">car edit </h3>
-                <span class="badge-pill">PREMIERE PRO</span>
-                <div>
-                    <button class="btn-delete-item" onclick="deleteElement('card-1788531148344')"><i class="fa-solid fa-trash"></i> Delete</button>
+
+                <div class="project-card" id="card-1788685373838">
+                    <div style="display:flex; justify-content:space-between; font-family:var(--font-mono); font-size:0.72rem; color:var(--text-muted); margin-bottom:8px;">
+                        <span>// RECENT WORK</span>
+                        <span style="color:var(--accent-cyan);">PREMIERE PRO</span>
+                    </div>
+                    <div class="video-box-player vertical">
+                        <iframe src="https://www.youtube.com/embed/GOstVu0JQys" allowfullscreen=""></iframe>
+                    </div>
+                    <h3 style="font-family:var(--font-display); font-size:1rem;" contenteditable="false">news edit</h3>
+                    <span class="badge-pill">PREMIERE PRO</span>
+                    <div>
+                        <button class="btn-delete-item" onclick="deleteElement('card-1788685373838')"><i class="fa-solid fa-trash"></i> Delete</button>
+                    </div>
                 </div>
-            </div><div class="project-card" id="card-1788531226443">
-                <div style="display:flex; justify-content:space-between; font-family:var(--font-mono); font-size:0.72rem; color:var(--text-muted); margin-bottom:8px;">
-                    <span>// RECENT WORK</span>
-                    <span style="color:var(--accent-cyan);">PREMIERE PRO</span>
+
+                <div class="project-card" id="card-1788686241263">
+                    <div style="display:flex; justify-content:space-between; font-family:var(--font-mono); font-size:0.72rem; color:var(--text-muted); margin-bottom:8px;">
+                        <span>// RECENT WORK</span>
+                        <span style="color:var(--accent-cyan);">PREMIERE PRO</span>
+                    </div>
+                    <div class="video-box-player vertical">
+                        <iframe src="https://www.youtube.com/embed/h_CwWvRghvE" allowfullscreen=""></iframe>
+                    </div>
+                    <h3 style="font-family:var(--font-display); font-size:1rem;" contenteditable="false">news edit</h3>
+                    <span class="badge-pill">PREMIERE PRO</span>
+                    <div>
+                        <button class="btn-delete-item" onclick="deleteElement('card-1788686241263')"><i class="fa-solid fa-trash"></i> Delete</button>
+                    </div>
                 </div>
-                <div class="video-box-player horizontal">
-                    <iframe src="https://youtube.com/embed/paJSUPRX_18" allowfullscreen=""></iframe>
+            </div>
+
+            <!-- Long Grid (All 7 Saved Horizontal Videos) -->
+            <div class="projects-grid" id="long-works-grid" style="display: none;">
+                <div class="project-card" id="card-1788531148344">
+                    <div style="display:flex; justify-content:space-between; font-family:var(--font-mono); font-size:0.72rem; color:var(--text-muted); margin-bottom:8px;">
+                        <span>// RECENT WORK</span>
+                        <span style="color:var(--accent-cyan);">PREMIERE PRO</span>
+                    </div>
+                    <div class="video-box-player horizontal">
+                        <iframe src="https://youtube.com/embed/u2_tpROhLSs" allowfullscreen=""></iframe>
+                    </div>
+                    <h3 style="font-family:var(--font-display); font-size:1rem;" contenteditable="false">car edit</h3>
+                    <span class="badge-pill">PREMIERE PRO</span>
+                    <div>
+                        <button class="btn-delete-item" onclick="deleteElement('card-1788531148344')"><i class="fa-solid fa-trash"></i> Delete</button>
+                    </div>
                 </div>
-                <h3 style="font-family:var(--font-display); font-size:1rem;" contenteditable="false">capcut texting</h3>
-                <span class="badge-pill">PREMIERE PRO</span>
-                <div>
-                    <button class="btn-delete-item" onclick="deleteElement('card-1788531226443')"><i class="fa-solid fa-trash"></i> Delete</button>
+
+                <div class="project-card" id="card-1788531226443">
+                    <div style="display:flex; justify-content:space-between; font-family:var(--font-mono); font-size:0.72rem; color:var(--text-muted); margin-bottom:8px;">
+                        <span>// RECENT WORK</span>
+                        <span style="color:var(--accent-cyan);">PREMIERE PRO</span>
+                    </div>
+                    <div class="video-box-player horizontal">
+                        <iframe src="https://youtube.com/embed/paJSUPRX_18" allowfullscreen=""></iframe>
+                    </div>
+                    <h3 style="font-family:var(--font-display); font-size:1rem;" contenteditable="false">texting</h3>
+                    <span class="badge-pill">PREMIERE PRO</span>
+                    <div>
+                        <button class="btn-delete-item" onclick="deleteElement('card-1788531226443')"><i class="fa-solid fa-trash"></i> Delete</button>
+                    </div>
                 </div>
-            </div><div class="project-card" id="card-1788531323798">
-                <div style="display:flex; justify-content:space-between; font-family:var(--font-mono); font-size:0.72rem; color:var(--text-muted); margin-bottom:8px;">
-                    <span>// RECENT WORK</span>
-                    <span style="color:var(--accent-cyan);">CANVA</span>
+
+                <div class="project-card" id="card-1788531323798">
+                    <div style="display:flex; justify-content:space-between; font-family:var(--font-mono); font-size:0.72rem; color:var(--text-muted); margin-bottom:8px;">
+                        <span>// RECENT WORK</span>
+                        <span style="color:var(--accent-cyan);">CANVA</span>
+                    </div>
+                    <div class="video-box-player horizontal">
+                        <iframe src="https://youtube.com/embed/goPXRVXcxrg" allowfullscreen=""></iframe>
+                    </div>
+                    <h3 style="font-family:var(--font-display); font-size:1rem;" contenteditable="false">canva map animation</h3>
+                    <span class="badge-pill">CANVA</span>
+                    <div>
+                        <button class="btn-delete-item" onclick="deleteElement('card-1788531323798')"><i class="fa-solid fa-trash"></i> Delete</button>
+                    </div>
                 </div>
-                <div class="video-box-player horizontal">
-                    <iframe src="https://youtube.com/embed/goPXRVXcxrg" allowfullscreen=""></iframe>
+
+                <div class="project-card" id="card-1788531410701">
+                    <div style="display:flex; justify-content:space-between; font-family:var(--font-mono); font-size:0.72rem; color:var(--text-muted); margin-bottom:8px;">
+                        <span>// RECENT WORK</span>
+                        <span style="color:var(--accent-cyan);">CANVA</span>
+                    </div>
+                    <div class="video-box-player horizontal">
+                        <iframe src="https://youtube.com/embed/9bWKI2BTWNM" allowfullscreen=""></iframe>
+                    </div>
+                    <h3 style="font-family:var(--font-display); font-size:1rem;" contenteditable="false">canva animation</h3>
+                    <span class="badge-pill">CANVA</span>
+                    <div>
+                        <button class="btn-delete-item" onclick="deleteElement('card-1788531410701')"><i class="fa-solid fa-trash"></i> Delete</button>
+                    </div>
                 </div>
-                <h3 style="font-family:var(--font-display); font-size:1rem;" contenteditable="false">canva map animation </h3>
-                <span class="badge-pill">CANVA</span>
-                <div>
-                    <button class="btn-delete-item" onclick="deleteElement('card-1788531323798')"><i class="fa-solid fa-trash"></i> Delete</button>
+
+                <div class="project-card" id="card-1788531458359">
+                    <div style="display:flex; justify-content:space-between; font-family:var(--font-mono); font-size:0.72rem; color:var(--text-muted); margin-bottom:8px;">
+                        <span>// RECENT WORK</span>
+                        <span style="color:var(--accent-cyan);">CANVA</span>
+                    </div>
+                    <div class="video-box-player horizontal">
+                        <iframe src="https://youtube.com/embed/MwGxlk2uJcY" allowfullscreen=""></iframe>
+                    </div>
+                    <h3 style="font-family:var(--font-display); font-size:1rem;" contenteditable="false">canva ads</h3>
+                    <span class="badge-pill">CANVA</span>
+                    <div>
+                        <button class="btn-delete-item" onclick="deleteElement('card-1788531458359')"><i class="fa-solid fa-trash"></i> Delete</button>
+                    </div>
                 </div>
-            </div><div class="project-card" id="card-1788531410701">
-                <div style="display:flex; justify-content:space-between; font-family:var(--font-mono); font-size:0.72rem; color:var(--text-muted); margin-bottom:8px;">
-                    <span>// RECENT WORK</span>
-                    <span style="color:var(--accent-cyan);">CANVA</span>
+
+                <div class="project-card" id="card-1788684114995">
+                    <div style="display:flex; justify-content:space-between; font-family:var(--font-mono); font-size:0.72rem; color:var(--text-muted); margin-bottom:8px;">
+                        <span>// RECENT WORK</span>
+                        <span style="color:var(--accent-cyan);">PREMIERE PRO</span>
+                    </div>
+                    <div class="video-box-player horizontal">
+                        <iframe src="https://www.youtube.com/embed/JYib1JNN-SY" allowfullscreen=""></iframe>
+                    </div>
+                    <h3 style="font-family:var(--font-display); font-size:1rem;" contenteditable="false">news edit</h3>
+                    <span class="badge-pill">PREMIERE PRO</span>
+                    <div>
+                        <button class="btn-delete-item" onclick="deleteElement('card-1788684114995')"><i class="fa-solid fa-trash"></i> Delete</button>
+                    </div>
                 </div>
-                <div class="video-box-player horizontal">
-                    <iframe src="https://youtube.com/embed/9bWKI2BTWNM" allowfullscreen=""></iframe>
+
+                <div class="project-card" id="card-1788684953883">
+                    <div style="display:flex; justify-content:space-between; font-family:var(--font-mono); font-size:0.72rem; color:var(--text-muted); margin-bottom:8px;">
+                        <span>// RECENT WORK</span>
+                        <span style="color:var(--accent-cyan);">PREMIERE PRO</span>
+                    </div>
+                    <div class="video-box-player horizontal">
+                        <iframe src="https://www.youtube.com/embed/GXRCzNKa__w" allowfullscreen=""></iframe>
+                    </div>
+                    <h3 style="font-family:var(--font-display); font-size:1rem;" contenteditable="false">news edit</h3>
+                    <span class="badge-pill">PREMIERE PRO</span>
+                    <div>
+                        <button class="btn-delete-item" onclick="deleteElement('card-1788684953883')"><i class="fa-solid fa-trash"></i> Delete</button>
+                    </div>
                 </div>
-                <h3 style="font-family:var(--font-display); font-size:1rem;" contenteditable="false">canva animation</h3>
-                <span class="badge-pill">CANVA</span>
-                <div>
-                    <button class="btn-delete-item" onclick="deleteElement('card-1788531410701')"><i class="fa-solid fa-trash"></i> Delete</button>
-                </div>
-            </div><div class="project-card" id="card-1788531458359">
-                <div style="display:flex; justify-content:space-between; font-family:var(--font-mono); font-size:0.72rem; color:var(--text-muted); margin-bottom:8px;">
-                    <span>// RECENT WORK</span>
-                    <span style="color:var(--accent-cyan);">CANVA</span>
-                </div>
-                <div class="video-box-player horizontal">
-                    <iframe src="https://youtube.com/embed/MwGxlk2uJcY" allowfullscreen=""></iframe>
-                </div>
-                <h3 style="font-family:var(--font-display); font-size:1rem;" contenteditable="false">canva ads</h3>
-                <span class="badge-pill">CANVA</span>
-                <div>
-                    <button class="btn-delete-item" onclick="deleteElement('card-1788531458359')"><i class="fa-solid fa-trash"></i> Delete</button>
-                </div>
-            </div></div>
+            </div>
 
             <div style="text-align: center; margin-top: 25px;">
                 <button class="btn-add-item" onclick="addVideoByLink()"><i class="fa-solid fa-plus"></i> Add Video by Link</button>
@@ -1486,11 +1597,11 @@
         </div>
     </section>
 
-    <!-- 7. CONTACT SECTION -->
+    <!-- 8. CONTACT SECTION -->
     <section class="section-block reveal-on-scroll reveal-active" id="contact">
         <div class="container">
             <div class="terminal-header-title">
-                <span class="terminal-tag">// 06 LET'S CONNECT</span>
+                <span class="terminal-tag">// 07 LET'S CONNECT</span>
                 <h2 class="section-heading">Get in Touch Directly</h2>
             </div>
 
@@ -1529,12 +1640,11 @@
                     </div>
 
                     <div>
-                        <!-- DIRECT WORKING FORM (WhatsApp Redirection) -->
                         <form id="portfolio-contact-form" onsubmit="handleDirectMessage(event)">
-                            <input type="text" id="form-name" class="input-dark" placeholder="Your Name" required="" fdprocessedid="frph5q">
-                            <input type="email" id="form-email" class="input-dark" placeholder="Your Email Address" required="" fdprocessedid="sy22j">
+                            <input type="text" id="form-name" class="input-dark" placeholder="Your Name" required="">
+                            <input type="email" id="form-email" class="input-dark" placeholder="Your Email Address" required="">
                             <textarea id="form-message" class="input-dark" rows="4" placeholder="Write about your project, timeline, budget or requirements..." required=""></textarea>
-                            <button type="submit" id="form-submit-btn" class="btn-dispatch-send" fdprocessedid="9vx9ul">
+                            <button type="submit" id="form-submit-btn" class="btn-dispatch-send">
                                 <i class="fa-solid fa-paper-plane"></i> Send Direct Message
                             </button>
                         </form>
@@ -1562,11 +1672,12 @@
     </footer>
 
     <!-- ADMIN FLOATING GEAR -->
-    <button class="admin-toggle-btn" onclick="handleAdminGearClick()" title="Admin Controls" fdprocessedid="0qpylp"><i class="fa-solid fa-gear"></i></button>
+    <button class="admin-toggle-btn" onclick="handleAdminGearClick()" title="Admin Controls"><i class="fa-solid fa-gear"></i></button>
 
-    <!-- ADMIN CONTROLS PANEL (STRICTLY HIDDEN BY DEFAULT) -->
+    <!-- ADMIN CONTROLS PANEL (DEFAULT HIDDEN) -->
     <div class="admin-panel" id="adminPanel" style="display: block;">
         <div style="font-family:var(--font-mono); font-size:0.75rem; color:var(--accent-cyan); margin-bottom:10px;">// EDIT CONTROLS</div>
+        <button style="background:#a855f7; color:#fff;" onclick="addNewCustomCard()"><i class="fa-solid fa-plus-circle"></i> Add Custom Card</button>
         <button style="background:#ef4444; color:#fff;" onclick="lockEditMode()"><i class="fa-solid fa-lock"></i> Lock &amp; Close</button>
         <button style="background:#0284c7; color:#fff;" onclick="downloadResume()"><i class="fa-solid fa-file-pdf"></i> Download CV (PDF)</button>
         <button style="background:#10b981; color:#fff;" onclick="saveLocalPortfolio()"><i class="fa-solid fa-floppy-disk"></i> 💾 Save Changes</button>
@@ -1621,7 +1732,7 @@
                     document.body.classList.add('edit-active');
                     document.querySelectorAll('[contenteditable]').forEach(el => el.contentEditable = true);
                     panel.style.display = 'block';
-                    alert("✅ Edit Mode UNLOCKED! You can now edit texts, photos, and projects.");
+                    alert("✅ Edit Mode UNLOCKED! Ab aap text, card, aur videos edit kar sakte hain.");
                 } else if (pass !== null) {
                     alert("❌ Incorrect Password!");
                 }
@@ -1715,6 +1826,27 @@
                 <button class="btn-delete-item" onclick="deleteElement('${id}')"><i class="fa-solid fa-trash"></i> Delete</button>
             `;
             container.appendChild(div);
+        }
+
+        function addNewCustomCard() {
+            if (!isEditMode) return alert("🔒 Unlock Edit Mode first!");
+            const badge = prompt("Badge (e.g. Experience, Hardware, Services):", "Experience") || "Experience";
+            const title = prompt("Title:", "New Experience") || "New Experience";
+            const desc = prompt("Description text:", "Describe your work and role...") || "Describe your work and role...";
+            const container = document.getElementById('extra-custom-container');
+            const id = 'extra-card-' + Date.now();
+
+            const div = document.createElement('div');
+            div.className = 'extra-custom-card';
+            div.id = id;
+            div.innerHTML = `
+                <span class="extra-card-badge" contenteditable="${isEditMode}"><i class="fa-solid fa-award"></i> ${badge}</span>
+                <h4 contenteditable="${isEditMode}" style="color:var(--accent-cyan); margin-bottom:6px; font-size: 1.05rem;">${title}</h4>
+                <p contenteditable="${isEditMode}" style="font-size:0.85rem; color:var(--text-secondary);">${desc}</p>
+                <button class="btn-delete-item" onclick="deleteElement('${id}')"><i class="fa-solid fa-trash"></i> Delete Card</button>
+            `;
+            container.appendChild(div);
+            document.getElementById('custom-section').scrollIntoView({ behavior: 'smooth' });
         }
 
         function addNewSkill() {
@@ -1871,5 +2003,43 @@
             loadSavedImages();
         };
     </script>
+<!-- Code injected by live-server -->
+<script>
+	// <![CDATA[  <-- For SVG support
+	if ('WebSocket' in window) {
+		(function () {
+			function refreshCSS() {
+				var sheets = [].slice.call(document.getElementsByTagName("link"));
+				var head = document.getElementsByTagName("head")[0];
+				for (var i = 0; i < sheets.length; ++i) {
+					var elem = sheets[i];
+					var parent = elem.parentElement || head;
+					parent.removeChild(elem);
+					var rel = elem.rel;
+					if (elem.href && typeof rel != "string" || rel.length == 0 || rel.toLowerCase() == "stylesheet") {
+						var url = elem.href.replace(/(&|\?)_cacheOverride=\d+/, '');
+						elem.href = url + (url.indexOf('?') >= 0 ? '&' : '?') + '_cacheOverride=' + (new Date().valueOf());
+					}
+					parent.appendChild(elem);
+				}
+			}
+			var protocol = window.location.protocol === 'http:' ? 'ws://' : 'wss://';
+			var address = protocol + window.location.host + window.location.pathname + '/ws';
+			var socket = new WebSocket(address);
+			socket.onmessage = function (msg) {
+				if (msg.data == 'reload') window.location.reload();
+				else if (msg.data == 'refreshcss') refreshCSS();
+			};
+			if (sessionStorage && !sessionStorage.getItem('IsThisFirstTime_Log_From_LiveServer')) {
+				console.log('Live reload enabled.');
+				sessionStorage.setItem('IsThisFirstTime_Log_From_LiveServer', true);
+			}
+		})();
+	}
+	else {
+		console.error('Upgrade your browser. This Browser is NOT supported WebSocket for Live-Reloading.');
+	}
+	// ]]>
+</script>
 
-<span id="PING_IFRAME_FORM_DETECTION" style="display: none;"></span></body></html>
+</body></html>
